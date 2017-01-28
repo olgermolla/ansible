@@ -62,7 +62,7 @@ CACHE_DIR = os.path.join(base_dir, ".spacewalk_reports")
 CACHE_AGE = 300 # 5min
 INI_FILE = os.path.join(base_dir, "spacewalk.ini")
 
-    # Sanity check
+# Sanity check
 if not os.path.exists(SW_REPORT):
     print('Error: %s is required for operation.' % (SW_REPORT), file=sys.stderr)
     sys.exit(1)
@@ -220,7 +220,7 @@ elif options.host:
         print('Problem executing the command "%s inventory": %s' %
               (SW_REPORT, str(e)), file=sys.stderr)
         sys.exit(2)
-    
+
     if options.human:
         print('Host: %s' % options.host)
         for k, v in iteritems(host_details):

@@ -279,7 +279,8 @@ class ACMEDirectory(object):
 
         self.directory = simple_get(self.module,self.directory_root)
 
-    def __getitem__(self, key): return self.directory[key]
+    def __getitem__(self, key):
+        return self.directory[key]
 
     def get_nonce(self,resource=None):
         url = self.directory_root
@@ -774,7 +775,7 @@ def main():
         ),
         supports_check_mode = True,
     )
- 
+
     # AnsibleModule() changes the locale, so change it back to C because we rely on time.strptime() when parsing certificate dates.
     locale.setlocale(locale.LC_ALL, "C")
 
