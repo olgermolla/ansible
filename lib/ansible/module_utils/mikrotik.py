@@ -41,6 +41,9 @@ class Mikrotik():
     s.connect((self.hostname, 8728))
     apiros = rosapi.RosAPI(s)
     apiros.login(self.username, self.password)
+    return apiros
 
-  def write(self):
-    self.login.talk([b'/interface/print', b"=.proplist=name,.id,type"])
+  def talk(self, talk_command):
+    r = self.login()
+    response = r.talk(talk_command)
+    print(response)
