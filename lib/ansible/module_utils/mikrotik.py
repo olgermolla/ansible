@@ -46,4 +46,4 @@ class Mikrotik():
   def talk(self, talk_command):
     r = self.login()
     response = r.talk(talk_command)
-    print(response)
+    return response
