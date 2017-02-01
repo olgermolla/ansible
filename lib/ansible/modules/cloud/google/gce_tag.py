@@ -181,12 +181,12 @@ def main():
             pem_file=dict(type='path'),
             project_id=dict(),
         ),
-         mutually_exclusive=[
-             [ 'instance_name', 'instance_pattern' ]
-         ],
+        mutually_exclusive=[
+            [ 'instance_name', 'instance_pattern' ]
+        ],
         required_one_of=[
-             [ 'instance_name', 'instance_pattern' ]
-         ]
+            [ 'instance_name', 'instance_pattern' ]
+        ]
     )
 
     instance_name = module.params.get('instance_name')
@@ -220,7 +220,7 @@ def main():
     except ResourceNotFoundError:
         module.fail_json(msg='Instance %s not found in zone %s' % (instance_name, zone), changed=False)
     except GoogleBaseError as e:
-       module.fail_json(msg=str(e), changed=False, exception=traceback.format_exc())
+        module.fail_json(msg=str(e), changed=False, exception=traceback.format_exc())
 
     # Tag nodes
     instance_pattern_matches = []

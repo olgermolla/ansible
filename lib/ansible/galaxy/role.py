@@ -244,7 +244,7 @@ class GalaxyRole(object):
                     elif role_data.get('github_branch', None):
                         self.version = role_data['github_branch']
                     else:
-                        self.version = 'master' 
+                        self.version = 'master'
                 elif self.version != 'master':
                     if role_versions and str(self.version) not in [a.get('name', None) for a in role_versions]:
                         raise AnsibleError("- the specified version (%s) of %s was not found in the list of available versions (%s)." % (self.version, self.name, role_versions))
@@ -252,7 +252,7 @@ class GalaxyRole(object):
                 tmp_file = self.fetch(role_data)
 
         else:
-           raise AnsibleError("No valid role data found")
+            raise AnsibleError("No valid role data found")
 
 
         if tmp_file:

@@ -15,9 +15,9 @@
 # along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
 
 ANSIBLE_METADATA = {
-  'version': '1.0',
-  'status': ['preview'],
-  'supported_by': 'committer'
+    'version': '1.0',
+    'status': ['preview'],
+    'supported_by': 'committer'
 }
 
 DOCUMENTATION = '''
@@ -184,9 +184,9 @@ def do_grant(kms, keyarn, role_arn, granttypes, mode='grant', dry_run=True, clea
                         if not dry_run:
                             statement['Principal']['AWS'].append(role_arn)
                 elif role_arn in statement['Principal']['AWS']: # not one the places the role should be
-                        changes_needed[granttype] = 'remove'
-                        if not dry_run:
-                            statement['Principal']['AWS'].remove(role_arn)
+                    changes_needed[granttype] = 'remove'
+                    if not dry_run:
+                        statement['Principal']['AWS'].remove(role_arn)
 
             elif mode == 'deny' and statement['Sid'] == statement_label[granttype] and role_arn in statement['Principal']['AWS']:
                 # we don't selectively deny. that's a grant with a
@@ -236,14 +236,14 @@ def assert_policy_shape(policy):
 def main():
     argument_spec = ansible.module_utils.ec2.ec2_argument_spec()
     argument_spec.update(dict(
-            mode = dict(choices=['grant', 'deny'], default='grant'),
-            key_alias = dict(required=False, type='str'),
-            key_arn = dict(required=False, type='str'),
-            role_name = dict(required=False, type='str'),
-            role_arn = dict(required=False, type='str'),
-            grant_types = dict(required=False, type='list'),
-            clean_invalid_entries = dict(type='bool', default=True),
-        )
+        mode = dict(choices=['grant', 'deny'], default='grant'),
+        key_alias = dict(required=False, type='str'),
+        key_arn = dict(required=False, type='str'),
+        role_name = dict(required=False, type='str'),
+        role_arn = dict(required=False, type='str'),
+        grant_types = dict(required=False, type='list'),
+        clean_invalid_entries = dict(type='bool', default=True),
+    )
     )
 
     module = AnsibleModule(

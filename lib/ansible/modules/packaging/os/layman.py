@@ -103,7 +103,8 @@ except ImportError:
     HAS_LAYMAN_API = False
 
 
-class ModuleError(Exception): pass
+class ModuleError(Exception):
+    pass
 
 
 def init_layman(config=None):
@@ -157,7 +158,7 @@ def install_overlay(module, name, list_url=None):
     layman = init_layman(layman_conf)
 
     if layman.is_installed(name):
-        return False    
+        return False
 
     if module.check_mode:
         mymsg = 'Would add layman repo \'' + name + '\''
@@ -201,7 +202,8 @@ def uninstall_overlay(module, name):
         module.exit_json(changed=True, msg=mymsg)
 
     layman.delete_repos(name)
-    if layman.get_errors(): raise ModuleError(layman.get_errors())
+    if layman.get_errors():
+        raise ModuleError(layman.get_errors())
 
     return True
 

@@ -101,7 +101,7 @@ options:
     description:
       - The resource_id of an existing DHCP options set.
         If this is specified, then it will override other settings, except tags
-        (which will be updated to match) 
+        (which will be updated to match)
     required: False
     default: None
     version_added: "2.1"
@@ -297,17 +297,17 @@ def main():
 
     # First check if we were given a dhcp_options_id
     if not params['dhcp_options_id']:
-    # No, so create new_options from the parameters
-        if params['dns_servers'] != None:
+        # No, so create new_options from the parameters
+        if params['dns_servers'] is not None:
             new_options['domain-name-servers'] = params['dns_servers']
-        if params['netbios_name_servers'] != None:
+        if params['netbios_name_servers'] is not None:
             new_options['netbios-name-servers'] = params['netbios_name_servers']
-        if params['ntp_servers'] != None:
+        if params['ntp_servers'] is not None:
             new_options['ntp-servers'] = params['ntp_servers']
-        if params['domain_name'] != None:
+        if params['domain_name'] is not None:
             # needs to be a list for comparison with boto objects later
             new_options['domain-name'] = [ params['domain_name'] ]
-        if params['netbios_node_type'] != None:
+        if params['netbios_node_type'] is not None:
             # needs to be a list for comparison with boto objects later
             new_options['netbios-node-type'] = [ str(params['netbios_node_type']) ]
         # If we were given a vpc_id then we need to look at the options on that
@@ -333,7 +333,7 @@ def main():
         supplied_options = connection.get_all_dhcp_options(filters={'dhcp-options-id':params['dhcp_options_id']})
         if len(supplied_options) != 1:
             if params['state'] != 'absent':
-              module.fail_json(msg=" a dhcp_options_id was supplied, but does not exist")
+                module.fail_json(msg=" a dhcp_options_id was supplied, but does not exist")
         else:
             found = True
             dhcp_option = supplied_options[0]

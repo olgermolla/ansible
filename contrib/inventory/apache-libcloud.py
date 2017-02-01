@@ -133,7 +133,7 @@ class LibcloudInventory(object):
         if config.has_option('driver', 'path'):
             self.path = config.get('driver', 'path')
         if config.has_option('driver', 'api_version'):
-            self.api_version = config.get('driver', 'api_version')    
+            self.api_version = config.get('driver', 'api_version')
 
         Driver = get_driver(getattr(Provider, self.provider))
 
@@ -163,8 +163,8 @@ class LibcloudInventory(object):
 
 
     def do_api_calls_update_cache(self):
-        ''' 
-        Do API calls to a location, and save data in cache files 
+        '''
+        Do API calls to a location, and save data in cache files
         '''
 
         self.get_nodes()
@@ -193,7 +193,7 @@ class LibcloudInventory(object):
     def add_node(self, node):
         '''
         Adds a node to the inventory and index, as long as it is
-        addressable 
+        addressable
         '''
 
         # Only want running instances
@@ -297,7 +297,7 @@ class LibcloudInventory(object):
         '''
 
         if key in my_dict:
-            my_dict[key].append(element);
+            my_dict[key].append(element)
         else:
             my_dict[key] = [element]
 
@@ -358,4 +358,4 @@ def main():
     LibcloudInventory()
 
 if __name__ == '__main__':
-	main()
+    main()

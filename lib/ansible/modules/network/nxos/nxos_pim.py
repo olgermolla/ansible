@@ -87,12 +87,12 @@ except ImportError:
 
 
 def to_list(val):
-     if isinstance(val, (list, tuple)):
-         return list(val)
-     elif val is not None:
-         return [val]
-     else:
-         return list()
+    if isinstance(val, (list, tuple)):
+        return list(val)
+    elif val is not None:
+        return [val]
+    else:
+        return list()
 
 
 class CustomNetworkConfig(NetworkConfig):
@@ -285,11 +285,11 @@ def get_commands(module, existing, proposed, candidate):
 
 def main():
     argument_spec = dict(
-            ssm_range=dict(required=True, type='str'),
-            m_facts=dict(required=False, default=False, type='bool'),
-            include_defaults=dict(default=False),
-            config=dict(),
-            save=dict(type='bool', default=False)
+        ssm_range=dict(required=True, type='str'),
+        m_facts=dict(required=False, default=False, type='bool'),
+        include_defaults=dict(default=False),
+        config=dict(),
+        save=dict(type='bool', default=False)
     )
     module = get_network_module(argument_spec=argument_spec,
                                 supports_check_mode=True)
@@ -300,8 +300,8 @@ def main():
                              "or the keyword 'none'.")
 
     args =  [
-            'ssm_range'
-        ]
+        'ssm_range'
+    ]
 
     existing = invoke('get_existing', module, args)
     end_state = existing

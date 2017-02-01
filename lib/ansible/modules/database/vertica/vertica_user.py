@@ -195,7 +195,7 @@ def check(user_facts, user, profile, resource_pool,
     locked, password, expired, ldap, roles):
     user_key = user.lower()
     if user_key not in user_facts:
-       return False
+        return False
     if profile and profile != user_facts[user_key]['profile']:
         return False
     if resource_pool and resource_pool != user_facts[user_key]['resource_pool']:
@@ -253,7 +253,7 @@ def present(user_facts, cursor, user, profile, resource_pool,
         if ldap:
             if ldap != (user_facts[user_key]['expired'] == 'True'):
                 query_fragments.append("password expire")
-                changed = True                
+                changed = True
         elif expired is not None and expired != (user_facts[user_key]['expired'] == 'True'):
             if expired:
                 query_fragments.append("password expire")

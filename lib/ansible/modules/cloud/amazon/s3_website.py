@@ -30,7 +30,7 @@ options:
     description:
       - "Name of the s3 bucket"
     required: true
-    default: null 
+    default: null
   error_key:
     description:
       - "The object key name to use when a 4XX class error occurs. To remove an error key, set to None."
@@ -267,9 +267,9 @@ def main():
     module = AnsibleModule(
         argument_spec=argument_spec,
         mutually_exclusive = [
-                               ['redirect_all_requests', 'suffix'],
-                               ['redirect_all_requests', 'error_key']
-                             ])
+            ['redirect_all_requests', 'suffix'],
+            ['redirect_all_requests', 'error_key']
+            ])
 
     if not HAS_BOTO3:
         module.fail_json(msg='boto3 required for this module')

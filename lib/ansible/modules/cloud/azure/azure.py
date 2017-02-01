@@ -258,11 +258,11 @@ try:
     import azure as windows_azure
 
     if hasattr(windows_azure, '__version__') and LooseVersion(windows_azure.__version__) <= "0.11.1":
-      from azure import WindowsAzureError as AzureException
-      from azure import WindowsAzureMissingResourceError as AzureMissingException
+        from azure import WindowsAzureError as AzureException
+        from azure import WindowsAzureMissingResourceError as AzureMissingException
     else:
-      from azure.common import AzureException as AzureException
-      from azure.common import AzureMissingResourceHttpError as AzureMissingException
+        from azure.common import AzureException as AzureException
+        from azure.common import AzureMissingResourceHttpError as AzureMissingException
 
     from azure.servicemanagement import (ServiceManagementService, OSVirtualHardDisk, SSH, PublicKeys,
                                          PublicKey, LinuxConfigurationSet, ConfigurationSetInputEndpoints,
@@ -276,7 +276,8 @@ from types import MethodType
 import json
 
 def _wait_for_completion(azure, promise, wait_timeout, msg):
-    if not promise: return
+    if not promise:
+        return
     wait_timeout = time.time() + wait_timeout
     while wait_timeout > time.time():
         operation_result = azure.get_operation_status(promise.request_id)

@@ -106,12 +106,12 @@ except ImportError:
 
 
 def to_list(val):
-     if isinstance(val, (list, tuple)):
-         return list(val)
-     elif val is not None:
-         return [val]
-     else:
-         return list()
+    if isinstance(val, (list, tuple)):
+        return list(val)
+    elif val is not None:
+        return [val]
+    else:
+        return list()
 
 
 class CustomNetworkConfig(NetworkConfig):
@@ -372,8 +372,8 @@ def get_snmp_location(module):
 
 def main():
     argument_spec = dict(
-            location=dict(required=True, type='str'),
-            state=dict(choices=['absent', 'present'],
+        location=dict(required=True, type='str'),
+        state=dict(choices=['absent', 'present'],
                        default='present')
     )
     module = get_network_module(argument_spec=argument_spec,

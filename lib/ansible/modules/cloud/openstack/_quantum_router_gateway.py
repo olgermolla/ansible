@@ -123,8 +123,8 @@ def _get_neutron_client(module, kwargs):
     token = _ksclient.auth_token
     endpoint = _get_endpoint(module, _ksclient)
     kwargs = {
-            'token': token,
-            'endpoint_url': endpoint
+        'token': token,
+        'endpoint_url': endpoint
     }
     try:
         neutron = client.Client('2.0', **kwargs)
@@ -134,14 +134,14 @@ def _get_neutron_client(module, kwargs):
 
 def _get_router_id(module, neutron):
     kwargs = {
-            'name': module.params['router_name'],
+        'name': module.params['router_name'],
     }
     try:
         routers = neutron.list_routers(**kwargs)
     except Exception as e:
         module.fail_json(msg = "Error in getting the router list: %s " % e.message)
     if not routers['routers']:
-            return None
+        return None
     return routers['routers'][0]['id']
 
 def _get_net_id(neutron, module):
@@ -191,9 +191,9 @@ def main():
 
     argument_spec = openstack_argument_spec()
     argument_spec.update(dict(
-            router_name        = dict(required=True),
-            network_name       = dict(required=True),
-            state              = dict(default='present', choices=['absent', 'present']),
+        router_name        = dict(required=True),
+        network_name       = dict(required=True),
+        state              = dict(default='present', choices=['absent', 'present']),
     ))
     module = AnsibleModule(argument_spec=argument_spec)
     if not HAVE_DEPS:

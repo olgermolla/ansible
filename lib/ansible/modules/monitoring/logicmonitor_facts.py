@@ -29,8 +29,8 @@ try:
     # Look for simplejson if that's the case
     try:
         if (
-         not isinstance(json.loads, types.FunctionType) or
-         not isinstance(json.dumps, types.FunctionType)
+            not isinstance(json.loads, types.FunctionType) or
+            not isinstance(json.dumps, types.FunctionType)
         ):
             raise ImportError
     except AttributeError:
@@ -567,8 +567,8 @@ def selector(module):
     to take given the right parameters"""
 
     if module.params["target"] == "host":
-            target = Host(module.params, module)
-            target.site_facts()
+        target = Host(module.params, module)
+        target.site_facts()
     elif module.params["target"] == "hostgroup":
         # Validate target specific required parameters
         if module.params["fullpath"] is not None:

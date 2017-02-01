@@ -20,7 +20,7 @@ ANSIBLE_METADATA = {'status': ['stableinterface'],
 
 DOCUMENTATION = '''
 ---
-module: ec2_tag 
+module: ec2_tag
 short_description: create and remove tag(s) to ec2 resources.
 description:
     - Creates, removes and lists tags from any EC2 resource.  The resource is referenced by its resource id (e.g. an instance being i-XXXXXXX). It is designed to be used with complex args (tags), see the examples.  This module has a dependency on python-boto.
@@ -28,9 +28,9 @@ version_added: "1.3"
 options:
   resource:
     description:
-      - The EC2 resource id. 
+      - The EC2 resource id.
     required: true
-    default: null 
+    default: null
     aliases: []
   state:
     description:
@@ -97,10 +97,10 @@ EXAMPLES = '''
     region:  eu-west-1
     resource: '{{ item.id }}'
     state: present
-    tags: 
+    tags:
       Name: dbserver
       Env: production
-  with_subelements: 
+  with_subelements:
     - ec2_vol.results
     - volumes
 
@@ -130,10 +130,10 @@ except ImportError:
 def main():
     argument_spec = ec2_argument_spec()
     argument_spec.update(dict(
-            resource = dict(required=True),
-            tags = dict(type='dict'),
-            state = dict(default='present', choices=['present', 'absent', 'list']),
-        )
+        resource = dict(required=True),
+        tags = dict(type='dict'),
+        state = dict(default='present', choices=['present', 'absent', 'list']),
+    )
     )
     module = AnsibleModule(argument_spec=argument_spec)
 
@@ -164,7 +164,7 @@ def main():
         if set(tags.items()).issubset(set(tagdict.items())):
             module.exit_json(msg="Tags already exists in %s." %resource, changed=False)
         else:
-            for (key, value) in set(tags.items()): 
+            for (key, value) in set(tags.items()):
                 if (key, value) not in set(tagdict.items()):
                     dictadd[key] = value
         tagger = ec2.create_tags(resource, dictadd)
@@ -176,12 +176,12 @@ def main():
             module.fail_json(msg="tags argument is required when state is absent")
         for (key, value) in set(tags.items()):
             if (key, value) not in set(tagdict.items()):
-                    baddict[key] = value
-                    if set(baddict) == set(tags):
-                        module.exit_json(msg="Nothing to remove here. Move along.", changed=False)
+                baddict[key] = value
+                if set(baddict) == set(tags):
+                    module.exit_json(msg="Nothing to remove here. Move along.", changed=False)
         for (key, value) in set(tags.items()):
             if (key, value) in set(tagdict.items()):
-                    dictremove[key] = value
+                dictremove[key] = value
         tagger = ec2.delete_tags(resource, dictremove)
         gettags = ec2.get_all_tags(filters=filters)
         module.exit_json(msg="Tags %s removed for resource %s." % (dictremove,resource), changed=True)

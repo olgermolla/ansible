@@ -47,6 +47,9 @@ Ansible Changes By Release
   * aws_kms
   * ecs_ecr
   * ec2_vpc_vgw_facts
+  * ec2_vpc_nat_gateway_facts
+- bigswitch:
+  * bigmon_policy
 - cloudscale_server
 - cloudstack
   * cs_host
@@ -126,9 +129,12 @@ Ansible Changes By Release
 - packet:
   * packet_device
   * packet_sshkey
+- runit
 - smartos:
   * imgadm
   * vmadm
+- tower:
+  * tower_organization
 - web_infrastructure
   * jenkins_script
 - windows:
@@ -144,6 +150,10 @@ Ansible Changes By Release
 ####New Callbacks:
 
 * dense: minimal stdout output with fallback to default when verbose
+
+####New: lookups
+
+* keyring: allows getting password from system keyrings
 
 
 ## 2.2.1 "The Battle of Evermore" - 2017-01-16

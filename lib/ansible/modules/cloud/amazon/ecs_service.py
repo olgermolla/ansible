@@ -260,7 +260,7 @@ class EcsServiceManager:
             cluster=cluster_name,
             services=[
                 service_name
-        ])
+                ])
         msg = ''
         if len(response['failures'])>0:
             c = self.find_in_array(response['failures'], service_name, 'arn')
@@ -353,10 +353,10 @@ def main():
                            )
 
     if not HAS_BOTO:
-      module.fail_json(msg='boto is required.')
+        module.fail_json(msg='boto is required.')
 
     if not HAS_BOTO3:
-      module.fail_json(msg='boto3 is required.')
+        module.fail_json(msg='boto3 is required.')
 
     service_mgr = EcsServiceManager(module)
 

@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 # (c) 2013, Evgenii Terechkov
-# Written by Evgenii Terechkov <evg@altlinux.org> 
-# Based on urpmi module written by Philippe Makowski <philippem@mageia.org> 
+# Written by Evgenii Terechkov <evg@altlinux.org>
+# Based on urpmi module written by Philippe Makowski <philippem@mageia.org>
 #
 # This module is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -158,10 +158,10 @@ def install_packages(module, pkgspec):
 
 def main():
     module = AnsibleModule(
-            argument_spec    = dict(
-                state        = dict(default='installed', choices=['installed', 'removed', 'absent', 'present']),
-                update_cache = dict(default=False, aliases=['update-cache'], type='bool'),
-                package      = dict(aliases=['pkg', 'name'], required=True)))
+        argument_spec    = dict(
+            state        = dict(default='installed', choices=['installed', 'removed', 'absent', 'present']),
+            update_cache = dict(default=False, aliases=['update-cache'], type='bool'),
+            package      = dict(aliases=['pkg', 'name'], required=True)))
 
 
     if not os.path.exists(APT_PATH) or not os.path.exists(RPM_PATH):

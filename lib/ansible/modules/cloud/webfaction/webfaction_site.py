@@ -95,8 +95,8 @@ EXAMPLES = '''
     webfaction_site:
       name: testsite1
       state: present
-      host: myhost.webfaction.com 
-      subdomains: 
+      host: myhost.webfaction.com
+      subdomains:
         - 'testsite1.my_domain.org'
       site_apps:
         - ['testapp1', '/']
@@ -167,8 +167,8 @@ def main():
                     changed = False
                 )
 
-        positional_args = [ 
-            session_id, site_name, site_ip, 
+        positional_args = [
+            session_id, site_name, site_ip,
             module.boolean(module.params['https']),
             module.params['subdomains'],
         ]
@@ -178,8 +178,8 @@ def main():
         if not module.check_mode:
             # If this isn't a dry run, create or modify the site
             result.update(
-                    webfaction.create_website(
-                        *positional_args
+                webfaction.create_website(
+                    *positional_args
                     ) if not existing_site else webfaction.update_website (
                         *positional_args
                     )

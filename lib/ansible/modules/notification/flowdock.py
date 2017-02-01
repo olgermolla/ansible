@@ -26,7 +26,7 @@ DOCUMENTATION = '''
 ---
 module: flowdock
 version_added: "1.2"
-author: "Matt Coddington (@mcodd)" 
+author: "Matt Coddington (@mcodd)"
 short_description: Send a message to a flowdock
 description:
    - Send a message to a flowdock team inbox or chat using the push API (see https://www.flowdock.com/api/team-inbox and https://www.flowdock.com/api/chat)
@@ -163,7 +163,7 @@ def main():
             if type == 'chat':
                 module.fail_json(msg="%s is not valid for the 'chat' type" % item)
             else:
-                    params[item] = module.params[item]
+                params[item] = module.params[item]
         elif type == 'inbox':
             module.fail_json(msg="%s is required for the 'inbox' type" % item)
 

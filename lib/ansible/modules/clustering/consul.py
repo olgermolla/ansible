@@ -365,7 +365,7 @@ def parse_check(module):
 
     if module.params.get('check_id') or module.params.get('script') or module.params.get('ttl') or module.params.get('http'):
 
-       return ConsulCheck(
+        return ConsulCheck(
             module.params.get('check_id'),
             module.params.get('check_name'),
             module.params.get('check_node'),
@@ -578,7 +578,7 @@ def main():
         register_with_consul(module)
     except ConnectionError as e:
         module.fail_json(msg='Could not connect to consul agent at %s:%s, error was %s' % (
-                            module.params.get('host'), module.params.get('port'), str(e)))
+            module.params.get('host'), module.params.get('port'), str(e)))
     except Exception as e:
         module.fail_json(msg=str(e))
 

@@ -388,7 +388,7 @@ def main():
     module = AnsibleModule(argument_spec=argument_spec, supports_check_mode=False)
 
     if not HAS_BOTO3:
-      module.fail_json(msg='boto3 is required.')
+        module.fail_json(msg='boto3 is required.')
 
     service_mgr = CloudFrontServiceManager(module)
 
@@ -410,7 +410,7 @@ def main():
 
     list_origin_access_identities = module.params.get('list_origin_access_identities')
     list_distributions = module.params.get('list_distributions')
-    list_distributions_by_web_acl_id = module.params.get('list_distributions_by_web_acl_id');
+    list_distributions_by_web_acl_id = module.params.get('list_distributions_by_web_acl_id')
     list_invalidations = module.params.get('list_invalidations')
     list_streaming_distributions = module.params.get('list_streaming_distributions')
 

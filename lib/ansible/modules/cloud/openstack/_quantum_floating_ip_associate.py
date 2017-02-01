@@ -125,8 +125,8 @@ def _get_neutron_client(module, kwargs):
     token = _ksclient.auth_token
     endpoint = _get_endpoint(module, _ksclient)
     kwargs = {
-            'token': token,
-            'endpoint_url': endpoint
+        'token': token,
+        'endpoint_url': endpoint
     }
     try:
         neutron = client.Client('2.0', **kwargs)
@@ -147,7 +147,7 @@ def _get_server_state(module, nova):
                     server_info = info
                     break
     except Exception as e:
-            module.fail_json(msg = "Error in getting the server list: %s" % e.message)
+        module.fail_json(msg = "Error in getting the server list: %s" % e.message)
     return server_info, server
 
 def _get_port_id(neutron, module, instance_id):
@@ -191,9 +191,9 @@ def main():
 
     argument_spec = openstack_argument_spec()
     argument_spec.update(dict(
-            ip_address                      = dict(required=True),
-            instance_name                   = dict(required=True),
-            state                           = dict(default='present', choices=['absent', 'present'])
+        ip_address                      = dict(required=True),
+        instance_name                   = dict(required=True),
+        state                           = dict(default='present', choices=['absent', 'present'])
     ))
     module = AnsibleModule(argument_spec=argument_spec)
 

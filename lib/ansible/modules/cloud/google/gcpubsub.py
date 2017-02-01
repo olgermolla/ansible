@@ -41,7 +41,7 @@ options:
     description:
        - Dictionary containing a subscripton name associated with a topic (required), along with optional ack_deadline, push_endpoint and pull. For pulling from a subscription, message_ack (bool), max_messages (int) and return_immediate are available as subfields.  See subfields name, push_endpoint and ack_deadline for more information.
     required: False
-  name: 
+  name:
     description: Subfield of subscription. Required if subscription is specified. See examples.
     required: False
   ack_deadline:
@@ -156,13 +156,13 @@ state:
     type: str
     sample: "present"
 
-subscription: 
+subscription:
     description: Name of subscription.
     returned: When subscription fields are specified
     type: str
     sample: "mysubscription"
 
-topic: 
+topic:
     description: Name of topic.
     returned: Always
     type: str
@@ -176,7 +176,7 @@ try:
    from ast import literal_eval
    HAS_PYTHON26 = True
 except ImportError:
-   HAS_PYTHON26 = False;
+   HAS_PYTHON26 = False
 
 try:
     from google.cloud import pubsub
@@ -226,17 +226,17 @@ def pull_messages(pull_params, sub):
 def main():
 
    module = AnsibleModule(argument_spec=dict(
-      topic=dict(required=True),
-      state=dict(choices=['absent', 'present'], default='present'),
-      publish=dict(type='list', default=None),
-      subscription=dict(type='dict', default=None),
-      service_account_email=dict(),
-      credentials_file=dict(),
-      project_id=dict(), ),)
+       topic=dict(required=True),
+       state=dict(choices=['absent', 'present'], default='present'),
+       publish=dict(type='list', default=None),
+       subscription=dict(type='dict', default=None),
+       service_account_email=dict(),
+       credentials_file=dict(),
+       project_id=dict(), ),)
 
    if not HAS_PYTHON26:
       module.fail_json(
-         msg="GCE module requires python's 'ast' module, python v2.6+")
+          msg="GCE module requires python's 'ast' module, python v2.6+")
 
    if not HAS_GOOGLE_CLOUD_PUBSUB:
      module.fail_json(msg="Please install google-cloud-pubsub library.")
@@ -307,7 +307,7 @@ def main():
                if s.push_endpoint is not None:
                   module.fail_json(msg="Cannot pull messages, push_endpoint is configured.")
                (json_output['pulled_messages'], changed) = pull_messages(
-                  mod_params['subscription']['pull'], s)
+                   mod_params['subscription']['pull'], s)
 
       # publish messages to the topic
       if mod_params['publish'] and len(mod_params['publish']) > 0:

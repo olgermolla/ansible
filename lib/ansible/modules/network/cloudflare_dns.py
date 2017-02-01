@@ -514,10 +514,10 @@ class CloudflareAPI(object):
     def ensure_dns_record(self,**kwargs):
         params = {}
         for param in ['port','priority','proto','proxied','service','ttl','type','record','value','weight','zone']:
-          if param in kwargs:
-              params[param] = kwargs[param]
-          else:
-              params[param] = getattr(self,param)
+            if param in kwargs:
+                params[param] = kwargs[param]
+            else:
+                params[param] = getattr(self,param)
 
         search_value = params['value']
         search_record = params['record']
@@ -628,18 +628,18 @@ def main():
         ),
         supports_check_mode = True,
         required_if = ([
-                ('state','present',['record','type']),
-                ('type','MX',['priority','value']),
-                ('type','SRV',['port','priority','proto','service','value','weight']),
-                ('type','A',['value']),
-                ('type','AAAA',['value']),
-                ('type','CNAME',['value']),
-                ('type','TXT',['value']),
-                ('type','NS',['value']),
-                ('type','SPF',['value'])
-            ]
-       ),
-       required_one_of = (
+            ('state','present',['record','type']),
+            ('type','MX',['priority','value']),
+            ('type','SRV',['port','priority','proto','service','value','weight']),
+            ('type','A',['value']),
+            ('type','AAAA',['value']),
+            ('type','CNAME',['value']),
+            ('type','TXT',['value']),
+            ('type','NS',['value']),
+            ('type','SPF',['value'])
+        ]
+        ),
+        required_one_of = (
             [['record','value','type']]
         )
     )

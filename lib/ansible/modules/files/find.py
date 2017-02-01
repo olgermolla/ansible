@@ -227,19 +227,20 @@ def sizefilter(st, size):
 
 def contentfilter(fsname, pattern):
     '''filter files which contain the given expression'''
-    if pattern is None: return True
+    if pattern is None:
+        return True
 
     try:
-       f = open(fsname)
-       prog = re.compile(pattern)
-       for line in f:
-           if prog.match (line):
-               f.close()
-               return True
+        f = open(fsname)
+        prog = re.compile(pattern)
+        for line in f:
+            if prog.match (line):
+                f.close()
+                return True
 
-       f.close() 
+        f.close()
     except:
-       pass
+        pass
 
     return False
 
@@ -336,7 +337,7 @@ def main():
                     fsname=os.path.normpath(os.path.join(root, fsobj))
 
                     if os.path.basename(fsname).startswith('.') and not params['hidden']:
-                       continue
+                        continue
 
                     try:
                         st = os.lstat(fsname)

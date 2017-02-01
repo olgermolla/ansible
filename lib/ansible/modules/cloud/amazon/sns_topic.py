@@ -81,16 +81,16 @@ EXAMPLES = """
     name: "alarms"
     state: present
     display_name: "alarm SNS topic"
-    delivery_policy: 
+    delivery_policy:
       http:
-        defaultHealthyRetryPolicy: 
+        defaultHealthyRetryPolicy:
             minDelayTarget: 2
             maxDelayTarget: 4
             numRetries: 3
             numMaxDelayRetries: 5
             backoffFunction: "<linear|arithmetic|geometric|exponential>"
         disableSubscriptionOverrides: True
-        defaultThrottlePolicy: 
+        defaultThrottlePolicy:
             maxReceivesPerSecond: 10
     subscriptions:
       - endpoint: "my_email_address@example.com"
@@ -319,10 +319,10 @@ class SnsTopicManager(object):
     def ensure_gone(self):
         self.arn_topic = self._arn_topic_lookup()
         if self.arn_topic:
-           self._get_topic_subs()
-           if self.subscriptions_existing:
-               self._delete_subscriptions()
-           self._delete_topic()
+            self._get_topic_subs()
+            if self.subscriptions_existing:
+                self._delete_subscriptions()
+            self._delete_topic()
 
 
     def get_info(self):
